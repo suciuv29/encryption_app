@@ -1,0 +1,156 @@
+int goleste_buffer_cititre();
+
+void meniu_caesar_consola()
+{
+    
+}
+
+void meniu_one_time_pad_consola()
+{	
+
+}
+
+/*
+functii pentru XOR
+*/
+void despre_XOR()
+{
+    printf("De afisat informatii despre criptarea XOR\n");
+}
+
+int citeste_cheie_XOR()
+{
+    int nr=0;
+    int iesire_while=1,stare_scanf;
+    while (iesire_while)
+    {
+        printf("Introduceti un numar pentru cheia de criptare (0<=nr<=255):\n");
+        stare_scanf=scanf("%d",&nr);
+        if (stare_scanf==0)
+        {
+            goleste_buffer_cititre();
+        }
+        if (nr>=0 && nr<=255)
+        {
+            iesire_while=0;
+        }
+        else
+        {
+            printf("Cheie invalida!\n");
+        }
+    }
+    goleste_buffer_cititre();
+    return nr;
+}
+
+void cripteaza_mesaj_XOR(int cheie_criptare)
+{
+    printf("Mesajul criptat cu cheia %d este:\n",cheie_criptare);
+    fisier_in=fopen("mesaj.in","r");
+    fisier_out=fopen("mesaj.out","w");
+    char caracter_citit,caracter_nou;
+    fscanf(fisier_in,"%c",&caracter_citit);
+    while (!feof(fisier_in))
+    {
+        caracter_nou=caracter_citit^cheie_criptare;
+        fprintf(fisier_out,"%c",caracter_nou);
+        fscanf(fisier_in,"%c",&caracter_citit);
+    }
+    fclose(fisier_in);fclose(fisier_out);
+}
+
+void cripteaza_XOR_consola()
+{
+    int cheie_criptare=0;
+    cheie_criptare=citeste_cheie_XOR();
+    cripteaza_mesaj_XOR(cheie_criptare);
+
+}
+
+void meniu_XOR_consola()
+{
+    //afisam meniul de comenzi din conzola
+    int iesire_meniu=1;
+    char comanda;
+    while(iesire_meniu)
+    {
+        printf("1. Despre criptare XOR\n2. Cripteaza mesaj\n3. Decripteaza mesaj\n0. Iesire\n");
+        scanf("%c",&comanda);
+        int citite_extra=goleste_buffer_cititre();
+        if (citite_extra>0)
+        {
+            comanda=0;
+        }
+        switch (comanda)
+        {
+            case '0': iesire_meniu=0;break;
+            case '1': despre_XOR();break;
+            case '2': cripteaza_XOR_consola();break;
+            case '3': printf("criptarea XOR are acelasi efect cu decriptarea!\n");cripteaza_XOR_consola();break;
+            default: printf("Comanda invalida!\n");
+        }
+    }
+}
+
+
+//functii setari program
+void setari_program()
+{
+    int iesire_while=1,stare_scanf;
+    metoda_citire_mesaj=0;
+    while (iesire_while)
+    {
+        printf ("Selectati metoda implicta de citire mesaj pentru criptare\n");
+        printf ("1. Din fisierul mesaj.in\n2. De la tastatura\n");
+        stare_scanf=scanf("%d",&metoda_citire_mesaj);
+        if (stare_scanf==0)
+        {
+            goleste_buffer_cititre();
+        }
+        if (metoda_citire_mesaj==1 || metoda_citire_mesaj==2)
+        {
+            iesire_while=0;
+        }
+        else
+        {
+            printf("Comanda invalida!\n");
+        }
+    }
+    goleste_buffer_cititre();
+
+}
+
+int goleste_buffer_cititre()
+{
+    int i=0;
+    while ( getchar() != '\n' )
+    {
+        i++;
+    }
+    return i;
+}
+
+void meniu_consola()
+{
+    //afisam meniul de comenzi din conzola
+    int iesire_meniu=1;
+    char comanda;
+    while(iesire_meniu)
+    {
+        int citite_extra=goleste_buffer_cititre();
+        if (citite_extra>0)
+        {
+            comanda=0;
+        }
+        switch (comanda)
+        {
+            case '0': iesire_meniu=0;break;
+            case '1': meniu_caesar_consola();break;
+            case '2': meniu_one_time_pad_consola();break;
+            case '3': meniu_XOR_consola();break;
+            case '4': setari_program();break;
+            default: printf("Comanda invalida!\n");
+        }
+    }
+}
+

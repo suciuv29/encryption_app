@@ -1,0 +1,17 @@
+Criptarea XOR presupune efectuarea operatiei XOR
+la nivel de bit cu ajutorul unei chei de criptare.
+Considerand ca intr-un fisier avem doar caractere ASCII,
+dimensiunea cheii de criptare este de 8 biti deoarece
+un caracter ASCII se scrie la randul lui pe 8 biti.
+Astfel cheia poate fi DOAR un numar intre 0 si 255.
+Operatia XOR -notata cu ^- se efectuaza astfel:
+1^1=0; 1^0=1; 0^1=1; 0^0=0;
+Criptarea se efectueaza pentru fiecare caracter din
+fisier astfel: se efectueaza operatia XOR intre
+bitii de pe aceeasi pozitii dintre cheie si caracter.
+Decriptarea unui text se face aplicand inca odata
+procedeul cu ACEEASI cheie.
+Deoarece caracterele de la 0 la 31 nu pot fi afisate,
+pe ecran se va afisa valoarea rezultatului.
+In fisierul de iesire se va scrie caracterul ASCII
+corect(desi unele editoare de text nu pot afisa acel caracter).

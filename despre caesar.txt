@@ -1,0 +1,12 @@
+Metoda cifrului caesar se foloseste doar la criptarea
+literelor. Prin aceasta metoda fiecarei litere din
+textul initial i se atribuie litera cu n pozitii
+mai la dreapta ei in alfabet. Astfel cheia de criptare
+este numarul n. Daca prin tranzitie se ajunge dupa
+litera z, se reia atribuirea de la inceputul
+alfabetului cu numarul de pozitii ramase. In alfabetul
+englezesc sunt doar 26 de litere astfel cheia este
+cuprinsa intre 1 si 25. Decriptarea se face prin
+tranzitia catre stanga cu aceeasi cheie sau tot prin
+tranzitie la dreapta cu cheie_noua=26-cheie_veche.
+Caracterele care nu sunt litere raman neschimbate
